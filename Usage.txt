@@ -21,6 +21,7 @@ initialization
 
 loop 
     ...
+     ms5611.SampleStateMachine();
      max21100.GetAccelValues(ax,ay,az,&fax, &fay, &faz);
      float fa = sqrt(fax*fax + fay*fay + faz*faz); 
      int bUseAccel = ((fa > 0.5f) && (fa < 1.5f)) ? 1 : 0;
