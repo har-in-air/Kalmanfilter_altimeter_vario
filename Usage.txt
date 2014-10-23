@@ -1,0 +1,33 @@
+Assumes MEAS MS5611 barometeric pressure sensor, Maxim MAX21100 gyro+accel, Madgwick AHRS algorithm
+
+
+
+
+#define Z_VARIANCE		    500.0f
+#define ZACCEL_VARIANCE	    1.0f
+#define ZACCELBIAS_VARIANCE 1.0f
+
+
+
+
+
+
+
+initialization 
+    ...
+    ms5611.AveragedSample(4);
+    kalman.Configure(Z_VARIANCE, ZACCEL_VARIANCE, ZACCELBIAS_VARIANCE, ms5611.zCmAvg_,0.0f,0.0f);
+    ...
+
+loop 
+    ...
+     max21100.GetAccelValues(ax,ay,az,&fax, &fay, &faz);
+     float fa = sqrt(fax*fax + fay*fay + faz*faz); 
+     int bUseAccel = ((fa > 0.5f) && (fa < 1.5f)) ? 1 : 0;
+     imu_MadgwickQuaternionUpdate(bUseAccel,elapsedTimeSecs,fax,fay,faz,fgx*PI_DIV_180,fgy*PI_DIV_180,fgz*PI_DIV_180,fmx,fmy,fmz);
+     float accel = 980.0f*imu_GravityCompensatedAccel(fax,fay,faz,quat);
+     kalman.Update((float)ms5611.zCmSample_, accel, elapsedTimeSecs, &zTrack, &vTrack);
+     ...
+
+
+
