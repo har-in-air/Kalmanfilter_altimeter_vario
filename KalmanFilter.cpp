@@ -107,16 +107,16 @@ void KalmanFilter::Update(float z, float a, float dt, float* pZ, float* pV) {
 	*pV = v_;
 
 	// Update state covariance matrix
-	Pzz_ -= kz * Pzz_;
-	Pzv_ -= kz * Pzv_;
-	Pza_ -= kz * Pza_;
-	
-	Pvz_ -= kv * Pzz_;
-	Pvv_ -= kv * Pzv_;
-	Pva_ -= kv * Pza_;
-	
-	Paz_ -= ka * Pzz_;
-	Pav_ -= ka * Pzv_;
-	Paa_ -= ka * Pza_;
+	Paz -= ka * Pzz;
+	Pav -= ka * Pzv;
+	Paa -= ka * Pza;
+
+	Pvz -= kv * Pzz;
+	Pvv -= kv * Pzv;
+	Pva -= kv * Pza;
+
+	Pzz -= kz * Pzz;
+	Pzv -= kz * Pzv;
+	Pza -= kz * Pza;
 	}
 
