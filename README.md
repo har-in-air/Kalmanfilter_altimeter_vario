@@ -1,13 +1,9 @@
-Kalman filter to estimate altitude and climbrate(sinkrate) by fusing altitude and acceleration sensor data for lag-and-overshoot-free output.
+Kalman filter to estimate altitude and climbrate(sinkrate) by fusing altitude and vertical acceleration data for lag-and-overshoot-free output.
 
-Altitude can come from a pressure sensor. Acceleration is assumed to be vertical acceleration.
+The filter also estimates a third parameter, acceleration bias. In practice, this is the residual bias after the accelerometer sensor is calibrated. It can drift unpredictably with environmental conditions such as temperature and humidity.
 
-The filter also estimates a third parameter, acceleration bias, as this is assumed to be unknown and can drift unpredictably.
-
-For details on the algorithm, see the document imu_kalman_filter_notes.pdf
-
-Example usage of the Kalman Filter API is in the file imuvario.cpp. This is the main initialization and loop code for an altimeter-vario. The project history is at http://pataga.net/imukalmanvario.html
+The project history is at http://pataga.net/imukalmanvario.html. For algorithm documentation, see "imu_kalman_filter_notes.pdf". imuvario.cpp has example pseudo-code usage of the kalman filter API. This is the main initialization and loop code for an altimeter-vario. 
 
 For algorithm comparisons on real data, see http://github.com/har-in-air/ESP32_IMU_BARO_GPS_LOGGER. The /docs directory has a downloaded binary data log file, code used to extract the sensor data from the log, and code to process it. The processing code compares two Kalman filters that output filtered altitude data. The first filter KFZ only uses the pressure sensor derived altitude, and the second filter KFZA fuses altitude and acceleration data for lag-and-overshoot free output. The spreadsheet http://github.com/har-in-air/ESP32_IMU_BARO_GPS_LOGGER/blob/master/docs/FilterResults.ods has the results.
 
-You can find the most recent algorithm implementations at http://github.com/har-in-air/ESP32_IMU_BARO_GPS_VARIO and http://github.com/har-in-air/ESP8266_BLUETOOTH_AUDIO_VARIO. 
+You can find the most recent algorithm implementations at http://github.com/har-in-air/ESP32_IMU_BARO_GPS_VARIO (this is a  GPS/altimeter-vario for recreational gliding)  and http://github.com/har-in-air/ESP8266_BLUETOOTH_AUDIO_VARIO. 
