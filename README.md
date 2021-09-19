@@ -6,4 +6,4 @@ The project history is at http://pataga.net/imukalmanvario.html. For algorithm d
 
 For algorithm comparisons on real data, see http://github.com/har-in-air/ESP32_IMU_BARO_GPS_LOGGER. The /docs directory has a downloaded binary data log file, code used to extract the sensor data from the log, and code to process it. The processing code compares two Kalman filters that output filtered altitude data. The first filter KFZ only uses the pressure sensor derived altitude, and the second filter KFZA fuses altitude and acceleration data for lag-and-overshoot free output. The spreadsheet http://github.com/har-in-air/ESP32_IMU_BARO_GPS_LOGGER/blob/master/docs/FilterResults.ods has the results.
 
-You can find the most recent algorithm implementations at http://github.com/har-in-air/ESP32_IMU_BARO_GPS_VARIO (this is a  GPS/altimeter-vario for recreational gliding)  and http://github.com/har-in-air/ESP8266_BLUETOOTH_AUDIO_VARIO. 
+Update: You can find the most recent algorithm documentation and implementation at http://github.com/har-in-air/ESP32_IMU_BARO_GPS_VARIO. This is a  GPS/altimeter-vario for recreational gliding.
